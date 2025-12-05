@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,9 @@
                     colors: {
                         vercel: '#000000',
                         highlight: '#3291ff',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
                     }
                 }
             }
@@ -25,23 +29,66 @@
             opacity: 0;
             transform: translateY(20px);
         }
+
         @keyframes fadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         /* Animación de rebote para el mensaje */
         .bounce-in {
             animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
         }
+
         @keyframes bounceIn {
             0% { transform: scale(0); opacity: 0; }
             80% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(1); opacity: 1; }
         }
+
+        /* --- NUEVAS ANIMACIONES PARA EL CORAZÓN --- */
+
+        /* Estela (Onda expansiva) */
+        @keyframes heartTrail {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .heart-trail-effect.animate-active {
+            animation: heartTrail 0.6s ease-out forwards;
+        }
+
+        /* Brillitos (Explosión) */
+        @keyframes sparkleBurst {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+        .sparkle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444; /* Tailwind red-500 */
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+        .sparkle.animate-active {
+            animation: sparkleBurst 0.6s ease-out forwards;
+        }
+        /* Direcciones para cada brillito */
+        .sparkle:nth-child(1) { --tx: -20px; --ty: -25px; background-color: #f59e0b; /* amber */ }
+        .sparkle:nth-child(2) { --tx: 20px; --ty: -25px; background-color: #ef4444; /* red */ }
+        .sparkle:nth-child(3) { --tx: -25px; --ty: 10px; background-color: #eab308; /* yellow */ }
+        .sparkle:nth-child(4) { --tx: 25px; --ty: 10px; background-color: #f59e0b; /* amber */ }
+        .sparkle:nth-child(5) { --tx: 0px; --ty: -35px; background-color: #ef4444; /* red */ }
+
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
 
     <!-- Navbar simple -->
@@ -49,22 +96,26 @@
         <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="font-bold text-lg tracking-tight">DevStatus: <span class="text-green-600">Online</span></span>
+                <span class="font-bold text-lg tracking-tight">DevStatus: <span
+                        class="text-green-600">Online</span></span>
             </div>
-            <div class="text-sm text-gray-500">v1.2.0</div>
+            <div class="text-sm text-gray-500">v1.3.0</div>
         </div>
     </nav>
 
     <!-- Contenido Principal -->
     <main class="flex-grow flex items-center justify-center p-6">
         <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-gray-100">
-            
+
             <!-- Header de la tarjeta -->
             <div class="bg-gradient-to-r from-gray-900 to-gray-800 p-8 text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-                
+                <div
+                    class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
+                </div>
+
                 <div class="relative z-10">
-                    <div class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-4xl shadow-lg mb-4">
+                    <div
+                        class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-4xl shadow-lg mb-4">
                         🚀
                     </div>
                     <h1 class="text-3xl font-bold text-white mb-2">¡Hola, Mundo!</h1>
@@ -76,23 +127,47 @@
             <div class="p-8">
                 <div class="prose max-w-none text-center mb-8">
                     <p class="text-lg text-gray-600 leading-relaxed">
-                        Si estás leyendo esto, significa que he configurado exitosamente mi pipeline de despliegue. 
+                        Si estás leyendo esto, significa que he configurado exitosamente mi pipeline de despliegue.
                         Este es un sitio estático creado con HTML y Tailwind, hosteado a través de Vercel.
                     </p>
                 </div>
 
                 <!-- Sección interactiva (JS test) -->
                 <div id="interactive-area" class="bg-gray-50 rounded-xl p-6 border border-gray-200 text-center transition-all duration-500">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Prueba de Interactividad</h3>
-                    
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Prueba de
+                        Interactividad</h3>
+
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <button onclick="updateCounter()" class="bg-black hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-2">
-                            <span>Dar un Like</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-                            </svg>
+                        <!-- Botón modificado con contenedor para efectos -->
+                        <button onclick="updateCounter()"
+                            class="group bg-black hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-2 relative overflow-hidden">
+                            
+                            <span class="relative z-10">Dar un Like</span>
+                            
+                            <!-- Contenedor del icono y efectos -->
+                            <div class="relative flex items-center justify-center w-6 h-6">
+                                <!-- Estela (se activa con JS) -->
+                                <span class="heart-trail-effect absolute w-full h-full bg-red-400 rounded-full opacity-0 pointer-events-none z-0"></span>
+                                
+                                <!-- Brillitos (se activan con JS) -->
+                                <div class="sparkles-container absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+                                    <span class="sparkle"></span>
+                                    <span class="sparkle"></span>
+                                    <span class="sparkle"></span>
+                                    <span class="sparkle"></span>
+                                    <span class="sparkle"></span>
+                                </div>
+
+                                <!-- Icono del corazón principal -->
+                                <svg xmlns="http://www.w3.org/2000/svg" id="main-heart-icon" class="h-5 w-5 text-red-500 relative z-10 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
                         </button>
-                        
+
                         <div class="text-2xl font-bold font-mono text-gray-700">
                             Likes: <span id="counter" class="text-blue-600 transition-colors duration-300">0</span>
                         </div>
@@ -110,10 +185,11 @@
             </div>
 
             <!-- Footer -->
-            <div class="bg-gray-50 px-8 py-4 border-t border-gray-100 text-center text-sm text-gray-500 flex justify-between items-center">
+            <div
+                class="bg-gray-50 px-8 py-4 border-t border-gray-100 text-center text-sm text-gray-500 flex justify-between items-center">
                 <span>Construido por mí</span>
                 <span class="flex items-center gap-1">
-                   Desplegado con <span class="font-bold text-black">▲ Vercel</span>
+                    Desplegado con <span class="font-bold text-black">▲ Vercel</span>
                 </span>
             </div>
         </div>
@@ -123,42 +199,60 @@
         // CONFIGURACIÓN:
         // Pon esto en 495 para probarlo rápido
         // O déjalo en 0 para hacerlo legal
-        let count = 0;
+        let count = 0; 
         
         const counterElement = document.getElementById('counter');
         const specialMessageContainer = document.getElementById('special-message');
         const specialMessageText = specialMessageContainer.querySelector('div');
         const interactiveArea = document.getElementById('interactive-area');
+        
+        // Elementos para la animación del corazón
+        const heartTrail = document.querySelector('.heart-trail-effect');
+        const sparkles = document.querySelectorAll('.sparkle');
+        const mainHeartIcon = document.getElementById('main-heart-icon');
 
         function updateCounter() {
             count++;
             counterElement.innerText = count;
             
+            // --- TRIGGER DE ANIMACIONES ---
+            // 1. Activar estela
+            heartTrail.classList.add('animate-active');
+            setTimeout(() => {
+                heartTrail.classList.remove('animate-active');
+            }, 600); // Coincide con la duración de la animación CSS
+
+            // 2. Activar brillitos
+            sparkles.forEach(sparkle => {
+                sparkle.classList.add('animate-active');
+                setTimeout(() => {
+                    sparkle.classList.remove('animate-active');
+                }, 600);
+            });
+
+            // 3. Pequeño "latido" extra en el icono principal
+            mainHeartIcon.style.transform = "scale(1.4)";
+            setTimeout(() => {
+                mainHeartIcon.style.transform = ""; // Vuelve al estado original (o al hover si el mouse sigue ahí)
+            }, 150);
+
+
             // --- LÓGICA DE LOS 500 LIKES ---
             if (count === 500) {
-                // 1. Mostrar mensaje
+                // Mostrar mensaje
                 specialMessageText.innerText = "¡Felicidades Pablo! 🎉";
                 specialMessageContainer.classList.remove('hidden');
                 
-                // 2. Texto dorado
+                // Texto dorado y grande
                 counterElement.classList.remove('text-blue-600');
-                counterElement.classList.add('text-yellow-500', 'text-4xl');
+                counterElement.classList.add('text-yellow-500', 'text-5xl');
                 
-                // 3. Fondo festivo
+                // Fondo festivo
                 interactiveArea.classList.remove('bg-gray-50');
                 interactiveArea.classList.add('bg-yellow-50', 'border-yellow-200', 'shadow-inner');
             }
-            
-            // Efecto click
-            counterElement.style.transform = "scale(1.5)";
-            setTimeout(() => {
-                counterElement.style.transform = "scale(1)";
-            }, 150);
         }
     </script>
 </body>
-</html>
 
 </html>
-
-
