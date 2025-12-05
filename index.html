@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Primer Deploy en Vercel</title>
+    <title>Aquí va a ir mi primer portafolio</title>
     <!-- Usamos Tailwind CSS vía CDN para estilos rápidos y bonitos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -22,8 +22,8 @@
     <style>
         /* Animación suave para la entrada */
         .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
+            animation: fadeIn 1.4s ease-out forwards;
+            opacity: 0.2;
             transform: translateY(20px);
         }
 
@@ -43,11 +43,9 @@
         <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="font-bold text-lg tracking-tight">DevStatus: <span
-                        class="text-green-600">Online</span></span>
+                <span class="font-bold text-lg tracking-tight">Estatus: <span
+                        class="text-green-600">En línea</span></span>
             </div>
-            <div class="text-sm text-gray-500">v1.0.0</div>
-        </div>
     </nav>
 
     <!-- Contenido Principal -->
@@ -65,8 +63,8 @@
                         class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-4xl shadow-lg mb-4">
                         🚀
                     </div>
-                    <h1 class="text-3xl font-bold text-white mb-2">¡Hola, Mundo!</h1>
-                    <p class="text-blue-200">Este sitio está vivo en Internet.</p>
+                    <h1 class="text-3xl font-bold text-white mb-2">¡El inicio de WebMaker.Kev!</h1>
+                    <p class="text-blue-200">Mi primer sitio está vivo!</p>
                 </div>
             </div>
 
@@ -74,15 +72,15 @@
             <div class="p-8">
                 <div class="prose max-w-none text-center mb-8">
                     <p class="text-lg text-gray-600 leading-relaxed">
-                        Si estás leyendo esto, significa que he configurado exitosamente mi pipeline de despliegue.
+                        Si esto está apareciendo en línea, significa que pude configurar exitosamente mi "pipeline" de despliegue.
                         Este es un sitio estático creado con HTML y Tailwind, hosteado a través de Vercel.
                     </p>
                 </div>
 
                 <!-- Sección interactiva (JS test) -->
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 text-center">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Prueba de
-                        Interactividad</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">"Esta es una prueba de
+                        Interacción</h3>
 
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                         <button onclick="updateCounter()"
@@ -100,19 +98,11 @@
                             Likes: <span id="counter" class="text-blue-600">0</span>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-3">Haz clic para probar que JavaScript funciona en producción.
+                    <p class="text-xs text-gray-400 mt-3">Haz clic para probar que JavaScript funciona correctamente.
                     </p>
                 </div>
             </div>
 
-            <!-- Footer -->
-            <div
-                class="bg-gray-50 px-8 py-4 border-t border-gray-100 text-center text-sm text-gray-500 flex justify-between items-center">
-                <span>Construido por mí</span>
-                <span class="flex items-center gap-1">
-                    Desplegado con <span class="font-bold text-black">▲ Vercel</span>
-                </span>
-            </div>
         </div>
     </main>
 
@@ -135,5 +125,6 @@
         console.log('El sitio ha cargado correctamente. JS operativo.');
     </script>
 </body>
+
 
 </html>
